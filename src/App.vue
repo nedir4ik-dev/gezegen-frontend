@@ -1,9 +1,9 @@
 <script setup>
-import HomeView from './views/HomeView.vue';
+// HomeView ýa-da başga bir zat göni çagyrylmaýar, router-view arkaly dolandyrylýar
 </script>
 
 <template>
-    <HomeView />
+    <router-view />
 </template>
 
 <style scoped></style>
