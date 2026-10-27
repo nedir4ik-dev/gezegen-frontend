@@ -32,7 +32,7 @@ onMounted(() => {
         <Navbar />
 
         <main class="max-w-7xl mx-auto px-4 py-8">
-            <!-- Header -->
+
             <header class="mb-10 text-center">
                 <h1
                     class="text-4xl font-extrabold text-indigo-600 dark:text-indigo-400 inline-flex items-center justify-center gap-3 drop-shadow-sm">
@@ -43,29 +43,24 @@ onMounted(() => {
                 </p>
             </header>
 
-            <!-- Ýalňyşlyk ýagdaýy -->
             <div v-if="errorMessage"
                 class="mb-6 p-4 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400 text-center text-sm font-semibold">
                 {{ errorMessage }}
             </div>
 
-            <!-- Ýüklenýär ýagdaýy -->
             <div v-if="loading" class="text-center text-gray-600 dark:text-gray-400 text-base py-16">
                 Ýüklenýär...
             </div>
 
-            <!-- Bilet ýok ýagdaýy -->
             <div v-else-if="tickets.length === 0"
                 class="text-center text-gray-500 dark:text-gray-400 py-16 bg-white/40 dark:bg-gray-900/40 backdrop-blur-xl rounded-3xl border border-white/40 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)]">
                 <p class="text-lg font-semibold">Häzirlikçe satyn alnan bilet ýok.</p>
             </div>
 
-            <!-- Biletleriň Sanawy -->
             <div v-else class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div v-for="ticket in tickets" :key="ticket.id"
                     class="bg-white/40 dark:bg-gray-900/40 backdrop-blur-xl p-6 rounded-3xl shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] border border-white/60 dark:border-white/10 flex flex-col justify-between gap-5 transition-all duration-300 hover:shadow-[0_8px_32px_0_rgba(31,38,135,0.15)]">
 
-                    <!-- Üstki bölek -->
                     <div class="flex justify-between items-start gap-4">
                         <div>
                             <span
@@ -86,13 +81,11 @@ onMounted(() => {
                             </p>
                         </div>
 
-                        <!-- Baha we Status Badge (Aşaklygyna tertipli) -->
                         <div class="text-right flex flex-col items-end gap-1.5">
                             <span class="text-2xl font-black text-indigo-600 dark:text-indigo-400 drop-shadow-sm">
                                 ${{ ticket.price }}
                             </span>
 
-                            <!-- Düzeldilen we gowulandyrlan Status Badge -->
                             <div :class="[
                                 'text-[11px] font-bold px-3 py-1 rounded-full border backdrop-blur-md uppercase tracking-wider',
                                 ticket.status === 'confirmed'
@@ -104,7 +97,6 @@ onMounted(() => {
                         </div>
                     </div>
 
-                    <!-- Aşaky bölek -->
                     <div
                         class="border-t border-white/40 dark:border-white/10 pt-4 flex flex-col gap-3 bg-white/30 dark:bg-gray-800/30 p-4 rounded-2xl backdrop-blur-2xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.6)] text-sm text-gray-700 dark:text-gray-300">
 

@@ -16,7 +16,6 @@ const props = defineProps({
 const emit = defineEmits(['search']);
 const localError = ref('');
 
-// "From" tarapda saýlanan aeroporty "To" spisogyndan aýyrmak (Howpsuz barlag bilen)
 const availableArrivalAirports = computed(() => {
     if (!props.airports || !Array.isArray(props.airports)) return [];
 
@@ -29,7 +28,6 @@ const availableArrivalAirports = computed(() => {
     );
 });
 
-// "From" üýtgedilende "To" bilen birmeňzeş bolan bolsa, ony arassalamak
 const handleDepartureChange = () => {
     if (props.searchForm?.departure_airport_id &&
         props.searchForm.departure_airport_id === props.searchForm.arrival_airport_id) {
@@ -38,7 +36,6 @@ const handleDepartureChange = () => {
     localError.value = '';
 };
 
-// Süzgüçleri arassalamak (Reset)
 const resetFilters = () => {
     if (props.searchForm) {
         props.searchForm.departure_airport_id = '';
@@ -66,7 +63,6 @@ const handleSearchClick = () => {
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
 
-            <!-- 1. From (Ugraýan) -->
             <div>
                 <label class="block text-xs font-bold text-gray-600 dark:text-gray-300 uppercase mb-1">
                     From (Ugraýan)
@@ -80,7 +76,6 @@ const handleSearchClick = () => {
                 </select>
             </div>
 
-            <!-- 2. To (Barýan) -->
             <div>
                 <label class="block text-xs font-bold text-gray-600 dark:text-gray-300 uppercase mb-1">
                     To (Barýan)
@@ -94,7 +89,6 @@ const handleSearchClick = () => {
                 </select>
             </div>
 
-            <!-- 3. Date (Sene) -->
             <div>
                 <label class="block text-xs font-bold text-gray-600 dark:text-gray-300 uppercase mb-1">Date</label>
                 <input type="date" v-model="searchForm.date"
@@ -103,7 +97,6 @@ const handleSearchClick = () => {
 
         </div>
 
-        <!-- Search we Reset düwmeleri -->
         <div class="flex flex-col sm:flex-row gap-3">
             <button @click="handleSearchClick"
                 class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl transition duration-200 flex items-center justify-center gap-2 shadow-md shadow-indigo-600/20 cursor-pointer">

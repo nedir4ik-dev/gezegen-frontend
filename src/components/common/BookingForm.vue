@@ -129,11 +129,8 @@ const handleBooking = async () => {
             <span>👥</span> Ýolagçy sanyny saýlaň
         </h3>
 
-        <!-- Ýolagçy sanyny saýlaýan paneller -->
         <div
             class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 p-4 bg-white/40 dark:bg-gray-900/40 rounded-2xl backdrop-blur-xl border border-white/50 dark:border-white/10 shadow-sm">
-
-            <!-- Ulylar -->
             <div class="flex justify-between items-center">
                 <div>
                     <div class="text-sm font-bold text-gray-900 dark:text-white">Ulylar</div>
@@ -149,7 +146,6 @@ const handleBooking = async () => {
                 </div>
             </div>
 
-            <!-- Çagalar -->
             <div class="flex justify-between items-center">
                 <div>
                     <div class="text-sm font-bold text-gray-900 dark:text-white">Çagalar</div>
@@ -165,7 +161,6 @@ const handleBooking = async () => {
                 </div>
             </div>
 
-            <!-- Bäbekler -->
             <div class="flex justify-between items-center">
                 <div>
                     <div class="text-sm font-bold text-gray-900 dark:text-white">Bäbekler</div>
@@ -186,7 +181,6 @@ const handleBooking = async () => {
             <span>📝</span> Ýolagçy maglumatlaryny dolduryň
         </h3>
 
-        <!-- Status habarlary -->
         <div v-if="successMessage"
             class="mb-4 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-sm font-semibold">
             {{ successMessage }}
@@ -196,7 +190,6 @@ const handleBooking = async () => {
             {{ errorMessage }}
         </div>
 
-        <!-- Dinamiki Ýolagçy Formasy -->
         <div v-if="!successMessage" class="space-y-4 mb-4">
             <div v-for="(p, index) in passengers" :key="index"
                 class="p-5 rounded-2xl bg-white/50 dark:bg-gray-900/50 border border-white/60 dark:border-white/10 shadow-sm">
@@ -249,11 +242,10 @@ const handleBooking = async () => {
             </div>
         </div>
 
-        <!-- Tassyklamak düwmeleri -->
         <div v-if="!successMessage" class="flex justify-end gap-3 pt-2">
             <button @click="$emit('cancel')" type="button"
                 class="px-5 py-2.5 rounded-2xl text-sm font-semibold text-gray-800 dark:text-gray-200 bg-white/70 hover:bg-white/90 dark:bg-gray-800/60 border border-gray-200 dark:border-white/10 cursor-pointer">
-                Ýatyr
+                Cancel
             </button>
 
             <button @click="handleBooking" :disabled="isSubmitting" type="button"
