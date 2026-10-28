@@ -7,7 +7,6 @@ import { IconPlane, IconMenu2, IconX, IconBookmark } from '@tabler/icons-vue';
 const isMobileMenuOpen = ref(false);
 const route = useRoute();
 
-// Computes the active tab based on the current path name (e.g., /tickets -> 'tickets')
 const activeTab = computed(() => {
     if (route.path === '/') return 'home';
     return route.path.replace('/', '');
