@@ -21,16 +21,12 @@ const closeMobileMenu = () => {
 <template>
     <header
         class="sticky top-4 z-30 w-[calc(100%-2rem)] max-w-7xl mx-auto rounded-3xl md:rounded-full bg-white/40 dark:bg-gray-900/40 backdrop-blur-xl border border-white/60 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.08),inset_0_1px_1px_rgba(255,255,255,0.6)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.37),inset_0_1px_1px_rgba(255,255,255,0.1)] transition-all duration-300">
-        <!-- Esasy Navbar Hatary -->
         <div class="flex items-center justify-between h-16 px-6">
-            <!-- Logo we Desktop Navigation (Liquid Pill Style) -->
             <div class="flex items-center gap-8">
                 <RouterLink to="/"
                     class="text-xl font-extrabold tracking-tight text-indigo-600 dark:text-indigo-400 flex items-center gap-2 drop-shadow-sm">
                     <IconPlane :size="25" :stroke="2" /> Gezegen
                 </RouterLink>
-
-                <!-- 3. Aktiv Linkiň Şekili (Liquid Pill Style) -->
                 <nav
                     class="hidden items-center gap-1.5 md:flex p-1 bg-gray-200/40 dark:bg-gray-800/40 rounded-full border border-white/40 dark:border-white/5 backdrop-blur-sm">
                     <RouterLink to="/"
@@ -48,7 +44,6 @@ const closeMobileMenu = () => {
                 </nav>
             </div>
 
-            <!-- Sag tarapdaky Düwmeler (Desktop) -->
             <div class="hidden md:flex items-center gap-4">
                 <RouterLink to="/tickets"
                     class="flex items-center gap-1.5 text-sm font-semibold text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition">
@@ -58,7 +53,6 @@ const closeMobileMenu = () => {
                 <ToggleDarkMode />
             </div>
 
-            <!-- Mobil Düwmeler we Hamburger Menu -->
             <div class="flex items-center gap-3 md:hidden">
                 <ToggleDarkMode />
                 <button @click="isMobileMenuOpen = !isMobileMenuOpen"
@@ -69,7 +63,6 @@ const closeMobileMenu = () => {
             </div>
         </div>
 
-        <!-- Mobil Açylýan Menýu (Birleşdirilen) -->
         <transition enter-active-class="transition duration-300 ease-out" enter-from-class="opacity-0 -translate-y-2"
             enter-to-class="opacity-100 translate-y-0" leave-active-class="transition duration-200 ease-in"
             leave-from-class="opacity-100 translate-y-0" leave-to-class="opacity-0 -translate-y-2">
