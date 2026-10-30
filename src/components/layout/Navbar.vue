@@ -19,7 +19,7 @@ const closeMobileMenu = () => {
 
 <template>
     <header
-        class="sticky top-4 z-30 w-[calc(100%-2rem)] max-w-7xl mx-auto rounded-3xl md:rounded-full bg-white/40 dark:bg-gray-900/40 backdrop-blur-xl border border-white/60 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.08),inset_0_1px_1px_rgba(255,255,255,0.6)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.37),inset_0_1px_1px_rgba(255,255,255,0.1)] transition-all duration-300">
+        class="sticky top-4 z-30 w-[calc(100%-2rem)] max-w-7xl mx-auto rounded-3xl md:rounded-full bg-white/20 dark:bg-gray-900/20 backdrop-blur-[5px] border border-white/60 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.08),inset_0_1px_1px_rgba(255,255,255,0.6)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.37),inset_0_1px_1px_rgba(255,255,255,0.1)] transition-all duration-300">
         <div class="flex items-center justify-between h-16 px-6">
             <div class="flex items-center gap-8">
                 <RouterLink to="/"

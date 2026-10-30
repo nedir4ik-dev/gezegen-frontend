@@ -150,14 +150,14 @@ const handleBooking = async () => {
 
 <template>
     <div
-        class="mt-2 pt-5 border-t border-white/40 dark:border-white/10 bg-white/30 dark:bg-gray-800/30 p-6 rounded-3xl backdrop-blur-2xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.6)]">
+        class="mt-2 pt-5 border-t border-gray-200 dark:border-white/10 bg-white/60 dark:bg-gray-800/30 p-6 rounded-3xl backdrop-blur-md shadow-md dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.6)]">
 
         <h3 class="text-base font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
             <span>👥</span> Ýolagçy sanyny saýlaň
         </h3>
 
         <div
-            class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 p-4 bg-white/40 dark:bg-gray-900/40 rounded-2xl backdrop-blur-xl border border-white/50 dark:border-white/10 shadow-sm">
+            class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 p-4 bg-white/80 dark:bg-gray-900/30 rounded-2xl backdrop-blur-md border-t border-gray-200 dark:border-white/10 shadow-sm">
             <div class="flex justify-between items-center">
                 <div>
                     <div class="text-sm font-bold text-gray-900 dark:text-white">Ulylar</div>
@@ -165,9 +165,9 @@ const handleBooking = async () => {
                 </div>
                 <div class="flex items-center gap-3">
                     <button @click="decrementPassenger('adults')" type="button"
-                        class="w-9 h-9 rounded-xl bg-white/70 dark:bg-gray-800/70 font-bold text-gray-800 dark:text-white flex items-center justify-center border border-white/80 dark:border-white/10 shadow-sm cursor-pointer">-</button>
+                        class="w-9 h-9 rounded-xl bg-white dark:bg-gray-800 font-bold text-gray-800 dark:text-white flex items-center justify-center border border-gray-300 dark:border-white/10 shadow-sm cursor-pointer">-</button>
                     <span class="font-bold text-gray-900 dark:text-white w-4 text-center">{{ passengerCounts.adults
-                        }}</span>
+                    }}</span>
                     <button @click="incrementPassenger('adults')" type="button"
                         class="w-9 h-9 rounded-xl bg-indigo-600 hover:bg-indigo-700 font-bold text-white flex items-center justify-center shadow-md cursor-pointer">+</button>
                 </div>
@@ -180,9 +180,9 @@ const handleBooking = async () => {
                 </div>
                 <div class="flex items-center gap-3">
                     <button @click="decrementPassenger('children')" type="button"
-                        class="w-9 h-9 rounded-xl bg-white/70 dark:bg-gray-800/70 font-bold text-gray-800 dark:text-white flex items-center justify-center border border-white/80 dark:border-white/10 shadow-sm cursor-pointer">-</button>
+                        class="w-9 h-9 rounded-xl bg-white dark:bg-gray-800 font-bold text-gray-800 dark:text-white flex items-center justify-center border border-gray-300 dark:border-white/10 shadow-sm cursor-pointer">-</button>
                     <span class="font-bold text-gray-900 dark:text-white w-4 text-center">{{ passengerCounts.children
-                        }}</span>
+                    }}</span>
                     <button @click="incrementPassenger('children')" type="button"
                         class="w-9 h-9 rounded-xl bg-indigo-600 hover:bg-indigo-700 font-bold text-white flex items-center justify-center shadow-md cursor-pointer">+</button>
                 </div>
@@ -195,9 +195,9 @@ const handleBooking = async () => {
                 </div>
                 <div class="flex items-center gap-3">
                     <button @click="decrementPassenger('infants')" type="button"
-                        class="w-9 h-9 rounded-xl bg-white/70 dark:bg-gray-800/70 font-bold text-gray-800 dark:text-white flex items-center justify-center border border-white/80 dark:border-white/10 shadow-sm cursor-pointer">-</button>
+                        class="w-9 h-9 rounded-xl bg-white dark:bg-gray-800 font-bold text-gray-800 dark:text-white flex items-center justify-center border border-gray-300 dark:border-white/10 shadow-sm cursor-pointer">-</button>
                     <span class="font-bold text-gray-900 dark:text-white w-4 text-center">{{ passengerCounts.infants
-                        }}</span>
+                    }}</span>
                     <button @click="incrementPassenger('infants')" type="button"
                         class="w-9 h-9 rounded-xl bg-indigo-600 hover:bg-indigo-700 font-bold text-white flex items-center justify-center shadow-md cursor-pointer">+</button>
                 </div>
@@ -219,7 +219,7 @@ const handleBooking = async () => {
 
         <div v-if="!successMessage" class="space-y-4 mb-4">
             <div v-for="(p, index) in passengers" :key="index"
-                class="p-5 rounded-2xl bg-white/50 dark:bg-gray-900/50 border border-white/60 dark:border-white/10 shadow-sm">
+                class="p-5 rounded-2xl bg-white dark:bg-gray-900/50 border border-gray-200 dark:border-white/10 shadow-sm">
                 <div class="text-xs font-bold uppercase text-indigo-600 dark:text-indigo-400 mb-3 tracking-wider">
                     {{ index + 1 }}-nji Ýolagçy ({{ p.type === 'adult' ? 'Uly adam' : (p.type === 'child' ? 'Çaga' :
                         'Bäbek') }})
@@ -228,42 +228,42 @@ const handleBooking = async () => {
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label
-                            class="block text-xs font-bold text-gray-600 dark:text-gray-300 uppercase mb-1">Adyňyz</label>
+                            class="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase mb-1">Adyňyz</label>
                         <input type="text" v-model="p.first_name" placeholder="Ady"
-                            class="w-full border border-white/60 dark:border-white/10 rounded-2xl p-3 text-sm bg-white/60 dark:bg-gray-900/60 text-gray-900 dark:text-white outline-none focus:ring-2 focus:ring-indigo-500" />
+                            class="w-full border-t border-gray-300 dark:border-white/10 rounded-2xl p-3 text-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm" />
                     </div>
 
                     <div>
                         <label
-                            class="block text-xs font-bold text-gray-600 dark:text-gray-300 uppercase mb-1">Familiýaňyz</label>
+                            class="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase mb-1">Familiýaňyz</label>
                         <input type="text" v-model="p.last_name" placeholder="Familiýasy"
-                            class="w-full border border-white/60 dark:border-white/10 rounded-2xl p-3 text-sm bg-white/60 dark:bg-gray-900/60 text-gray-900 dark:text-white outline-none focus:ring-2 focus:ring-indigo-500" />
+                            class="w-full border border-gray-300 dark:border-white/10 rounded-2xl p-3 text-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm" />
                     </div>
 
                     <template v-if="p.type === 'adult'">
                         <div>
                             <label
-                                class="flex text-xs font-bold text-gray-600 dark:text-gray-300 uppercase mb-1 items-center gap-1">
+                                class="flex text-xs font-bold text-gray-700 dark:text-gray-300 uppercase mb-1 items-center gap-1">
                                 <IconMail :size="16" :stroke="2" /> Email Poçta
                             </label>
                             <input type="email" v-model="p.email" placeholder="example@gmail.com"
-                                class="w-full border border-white/60 dark:border-white/10 rounded-2xl p-3 text-sm bg-white/60 dark:bg-gray-900/60 text-gray-900 dark:text-white outline-none focus:ring-2 focus:ring-indigo-500" />
+                                class="w-full border border-gray-300 dark:border-white/10 rounded-2xl p-3 text-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm" />
                         </div>
                         <div>
                             <label
-                                class="block text-xs font-bold text-gray-600 dark:text-gray-300 uppercase mb-1">Telefon
+                                class="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase mb-1">Telefon
                                 Belgisi</label>
                             <input type="text" v-model="p.phone" placeholder="+99365000000"
-                                class="w-full border border-white/60 dark:border-white/10 rounded-2xl p-3 text-sm bg-white/60 dark:bg-gray-900/60 text-gray-900 dark:text-white outline-none focus:ring-2 focus:ring-indigo-500" />
+                                class="w-full border border-gray-300 dark:border-white/10 rounded-2xl p-3 text-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm" />
                         </div>
                     </template>
 
                     <div class="md:col-span-2">
-                        <label class="block text-xs font-bold text-gray-600 dark:text-gray-300 uppercase mb-1">
+                        <label class="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase mb-1">
                             {{ p.type === 'adult' ? 'Pasport Belgisi' : 'Dogluş Şahadatnamasy / Pasport Belgisi' }}
                         </label>
-                        <input type="text" v-model="p.passport_number" placeholder="Belgini giriziň"
-                            class="w-full border border-white/60 dark:border-white/10 rounded-2xl p-3 text-sm bg-white/60 dark:bg-gray-900/60 text-gray-900 dark:text-white outline-none focus:ring-2 focus:ring-indigo-500" />
+                        <input type="text" v-model="p.passport_number" placeholder="I-A0234567"
+                            class="w-full border border-gray-300 dark:border-white/10 rounded-2xl p-3 text-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm" />
                     </div>
                 </div>
             </div>
@@ -271,7 +271,7 @@ const handleBooking = async () => {
 
         <div v-if="!successMessage" class="flex justify-end gap-3 pt-2">
             <button @click="$emit('cancel')" type="button"
-                class="px-5 py-2.5 rounded-2xl text-sm font-semibold text-gray-800 dark:text-gray-200 bg-white/70 hover:bg-white/90 dark:bg-gray-800/60 border border-gray-200 dark:border-white/10 cursor-pointer">
+                class="px-5 py-2.5 rounded-2xl text-sm font-semibold text-gray-800 dark:text-gray-200 bg-white/90 dark:hover:text-gray-800 dark:hover:bg-white dark:bg-gray-800/60 border border-gray-300 dark:border-white/10 shadow-sm cursor-pointer">
                 Cancel
             </button>
 
