@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, reactive } from 'vue';
 import BookingForm from './BookingForm.vue';
 
 defineProps({
@@ -10,6 +10,7 @@ defineProps({
 });
 
 const selectedFlightId = ref(null);
+const flightDynamicData = reactive({});
 
 const toggleSelectFlight = (flightId) => {
     if (selectedFlightId.value === flightId) {
@@ -17,6 +18,10 @@ const toggleSelectFlight = (flightId) => {
     } else {
         selectedFlightId.value = flightId;
     }
+};
+
+const updateFlightData = (flightId, data) => {
+    flightDynamicData[flightId] = data;
 };
 </script>
 
@@ -47,11 +52,11 @@ const toggleSelectFlight = (flightId) => {
                         <div class="mt-3 text-xl font-extrabold text-gray-900 dark:text-white flex items-center gap-3">
                             <span>{{ flight.departure_airport?.city }} <span
                                     class="text-gray-500 dark:text-gray-400 text-base font-normal">({{
-                                    flight.departure_airport?.code }})</span></span>
+                                        flight.departure_airport?.code }})</span></span>
                             <span class="text-indigo-500 font-bold">➔</span>
                             <span>{{ flight.arrival_airport?.city }} <span
                                     class="text-gray-500 dark:text-gray-400 text-base font-normal">({{
-                                    flight.arrival_airport?.code }})</span></span>
+                                        flight.arrival_airport?.code }})</span></span>
                         </div>
 
                         <div class="text-sm text-gray-600 dark:text-gray-300 mt-2 flex flex-wrap gap-4">
@@ -66,9 +71,12 @@ const toggleSelectFlight = (flightId) => {
                         class="text-left md:text-right w-full md:w-auto border-t md:border-t-0 pt-3 md:pt-0 border-white/40 dark:border-white/10 flex md:flex-col justify-between items-center md:items-end gap-3">
                         <div>
                             <span class="text-2xl font-black text-indigo-600 dark:text-indigo-400">
-                                ${{ flight.price }}
+                                ${{ flightDynamicData[flight.id]?.totalPrice !== undefined ?
+                                    flightDynamicData[flight.id].totalPrice : flight.price }}
                             </span>
-                            <div class="text-xs text-gray-500 dark:text-gray-400">Baza baha</div>
+                            <div class="text-xs font-semibold text-gray-600 dark:text-gray-300">
+                                {{ flightDynamicData[flight.id]?.totalPassengers || 1 }} ýolagçy
+                            </div>
                         </div>
                         <div class="flex items-center gap-2">
                             <span class="text-xs text-gray-500 dark:text-gray-400">Boş ýer:</span>
@@ -86,6 +94,7 @@ const toggleSelectFlight = (flightId) => {
                 </div>
 
                 <BookingForm v-if="selectedFlightId === flight.id" :flight="flight"
+                    @update-summary="(data) => updateFlightData(flight.id, data)"
                     @cancel="toggleSelectFlight(flight.id)" />
 
             </div>

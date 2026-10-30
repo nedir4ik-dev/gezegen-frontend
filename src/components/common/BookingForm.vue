@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive, computed } from 'vue';
+import { ref, reactive, computed, watch } from 'vue';
 import { IconMail } from '@tabler/icons-vue';
 
 const props = defineProps({
@@ -9,7 +9,7 @@ const props = defineProps({
     }
 });
 
-const emit = defineEmits(['cancel', 'booked']);
+const emit = defineEmits(['cancel', 'booked', 'update-summary']);
 
 const passengerCounts = reactive({
     adults: 1,
@@ -26,8 +26,33 @@ const successMessage = ref('');
 const errorMessage = ref('');
 
 const totalPassengers = computed(() => {
-    return passengerCounts.adults + passengerCounts.children + passengerCounts.infants;
+    return Number(passengerCounts.adults) + Number(passengerCounts.children) + Number(passengerCounts.infants);
 });
+
+const totalPrice = computed(() => {
+    const basePrice = Number(props.flight.price) || 0;
+
+    const adultTotal = passengerCounts.adults * basePrice;
+
+    const childTotal = passengerCounts.children * (basePrice * 0.75);
+
+    let extraInfants = 0;
+    if (passengerCounts.infants > 1) {
+        if (passengerCounts.infants > passengerCounts.adults) {
+            extraInfants = passengerCounts.infants - Math.max(1, passengerCounts.adults);
+        }
+    }
+    const infantTotal = extraInfants * (basePrice * 0.75);
+
+    return (adultTotal + childTotal + infantTotal).toFixed(2);
+});
+
+watch([totalPrice, totalPassengers], () => {
+    emit('update-summary', {
+        totalPrice: totalPrice.value,
+        totalPassengers: totalPassengers.value
+    });
+}, { immediate: true });
 
 const syncPassengersArray = () => {
     let current = [...passengers.value];
@@ -102,13 +127,15 @@ const handleBooking = async () => {
             },
             body: JSON.stringify({
                 flight_id: props.flight.id,
-                passengers: passengers.value
+                passengers: passengers.value,
+                total_price: totalPrice.value
             })
         });
         const data = await response.json();
         if (response.ok && data.success) {
             successMessage.value = `Ähli biletler üstünlikli sargyt edildi!`;
             props.flight.available_seats -= totalPassengers.value;
+            emit('booked', data);
         } else {
             errorMessage.value = data.message || 'Sargyt etmekde ýalňyşlyk çykdy.';
         }
@@ -164,7 +191,7 @@ const handleBooking = async () => {
             <div class="flex justify-between items-center">
                 <div>
                     <div class="text-sm font-bold text-gray-900 dark:text-white">Bäbekler</div>
-                    <div class="text-xs text-gray-500 dark:text-gray-400">1-nji bäbek mugt, artykmaç %75</div>
+                    <div class="text-xs text-gray-500 dark:text-gray-400">1-nji bäbek mugt, ulydan köp bolsa %75</div>
                 </div>
                 <div class="flex items-center gap-3">
                     <button @click="decrementPassenger('infants')" type="button"
@@ -195,7 +222,7 @@ const handleBooking = async () => {
                 class="p-5 rounded-2xl bg-white/50 dark:bg-gray-900/50 border border-white/60 dark:border-white/10 shadow-sm">
                 <div class="text-xs font-bold uppercase text-indigo-600 dark:text-indigo-400 mb-3 tracking-wider">
                     {{ index + 1 }}-nji Ýolagçy ({{ p.type === 'adult' ? 'Uly adam' : (p.type === 'child' ? 'Çaga' :
-                    'Bäbek') }})
+                        'Bäbek') }})
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
